@@ -12,54 +12,48 @@
 		</div>
 		<div id=viewer :data-count=$store.state.slides.length v-touch:swipe=swiper :data-current=$store.state.id :data-currentsub=$store.state.currentSub :data-postopen="$store.state.modal">
 		
-			<div :class="'slide '+slide.id" v-for="slide in $store.state.slides" :id="slide.id" :data-slide="slide.img" v-html="slide.mark" :data-dex="$store.state.pages[slide.id].dex">
+			<div :class="'slide '+slide.id" v-for="slide in $store.state.slides" :id="slide.id" v-bind:key="slide.id" :data-slide="slide.img" v-html="slide.mark" :data-dex="$store.state.pages[slide.id].dex">
 			</div>
 		</div>
 		<div id=back @click=novert($event,false) :data-postopen="$store.state.modal" :data-current=$store.state.id><img src=back.svg />{{settings.backText}}</div>
 		<div id=next @click=novert($event,true) :data-postopen="$store.state.modal" :data-current=$store.state.id><img src=next.svg />{{settings.nextText}}</div>
 		<div id=ex :data-postopen="$store.state.modal">
 			<div id=flags>
-				<a href=/><img src=flag_us.jpg /></a>
-				<a href=/fr><img src=flag_fr.jpg /></a>
-				<a href=/cr><img src=flag_cr.jpg /></a>
+				<a href="/"><img src=flag_us.jpg /></a>
+				<a href="/fr"><img src=flag_fr.jpg /></a>
+				<a href="/cr"><img src=flag_cr.jpg /></a>
 			</div>
 			<h4 @click="mob" :data-current="$store.state.id" :class="'sub_'+$store.state.currentSub">{{settings.exploreText}}</h4>
 			<a id="burger" @click="mob" :data-current="$store.state.id" :class="'sub_'+$store.state.currentSub"></a>
 		</div>
-		<a href=/ :data-current="$store.state.id" :data-currentsub="$store.state.currentSub" id=logo :data-postopen="$store.state.modal"></a>
+		<a href="/" :data-current="$store.state.id" :data-currentsub="$store.state.currentSub" id=logo :data-postopen="$store.state.modal"></a>
 		<nav :data-id="$store.state.id" :data-open="$store.state.vert" :data-cursub="$store.state.subdex" :data-currentsub="$store.state.currentSub" :data-postopen="$store.state.modal">
 			<!-- {{$store.state.currentSub}}
 			{{$store.state.subdex}} -->
 			<!-- {{$store.state.sliceTemp}} -->
 			<ul id=dots>
 				<!-- {{$store.state.id}} -->
-				<li v-for="(slide,index) in $store.state.allslides" :class="{'active':index===$store.state.current,'subnav':slide.subs && slide.subs.length > 0}" class=tab :data-slide="slide.id">
-				<template v-if="slide.name!=='Activities'">
-					<div class=wrap>
-						<a @click=tab($event,false) :href="(settings.basePush === '/' ? '/' : settings.basePush+'/')+slide.id+'/'" :data-dex="index"><span class=slidename :data-dex="index">{{ slide.name }}</span><span class=dot :data-dex="index"></span></a>
-					</div>
-					<ul v-if="slide.subs && slide.subs.length > 0" class=subdots>
-						<li v-for="(sub,index) in slide.subs" :data-slide="slide.id" >
-							<a @click=tab($event,true) :data-subdex="index" :data-subid=sub.id><span class=subname :data-subdex=index :data-subid=sub.id>{{ sub.name }}</span><span class=subdot :data-subdex=index :data-subid=sub.id></span></a>
-						</li>
-					</ul>
-					</template>
-					<template v-else>
-					<div class=wrap>
-						<a @click=tab($event,false) :href="(settings.basePush === '/' ? '/' : settings.basePush+'/')+slide.id+'/'" :data-dex="index"><span class=slidename :data-dex="index">{{ slide.name }}</span><span class=dot :data-dex="index"></span></a>
-					</div>
-					<ul v-if="slide.subs && slide.subs.length > 0" class=subdots>
-						<li v-for="(sub,index) in slide.subs" :data-slide="slide.id" >
-							<a @click=tab($event,true) :data-subdex="index" :data-subid=sub.id><span class=subname :data-subdex=index :data-subid=sub.id>{{ sub.name }}</span><span class=subdot :data-subdex=index :data-subid=sub.id></span></a>
-						</li>
-					</ul>
-					</template>	
+				<li v-for="(slide,index) in $store.state.allslides" :class="{'active':index===$store.state.current,'subnav':slide.subs && slide.subs.length > 0}" class=tab :data-slide="slide.id" v-bind:key="slide.id">
+				  <div class=wrap>
+            <a @click=tab($event,false) :href="(settings.basePush === '/' ? '/' : settings.basePush+'/')+slide.id+'/'" :data-dex="index">
+              <span class=slidename :data-dex="index">{{ slide.name }}</span>
+              <span class=dot :data-dex="index"></span>
+            </a>
+          </div>
+          <ul v-if="slide.subs && slide.subs.length > 0" class=subdots>
+            <li v-for="(sub,index) in slide.subs" :data-slide="slide.id" v-bind:key="sub.id" v-bind:style="{ display: (showSubItem(index, $store.state.subdex, slide) ? 'flex' : 'none') }">
+              <a @click=tab($event,true) :data-subdex="index" :data-subid=sub.id>
+                <span class=subname :data-subdex=index :data-subid=sub.id>{{ sub.name }}</span>
+                <span class=subdot :data-subdex=index :data-subid=sub.id></span>
+              </a>
+            </li>
+          </ul>
 				</li>
 			</ul>
 		</nav>
 		<div id=explore>
 			<ul id=menu>
-				<li v-for="(slide,index) in $store.state.allslides"><a :class="{'active':index===$store.state.current}" @click=tab($event,false) :data-slide="slide.id" class=tab>{{ slide.name }}</a></li>
+				<li v-for="(slide,index) in $store.state.allslides" v-bind:key="slide.id"><a :class="{'active':index===$store.state.current}" @click=tab($event,false) :data-slide="slide.id" class=tab>{{ slide.name }}</a></li>
 			</ul>
 			<div id="menu_footer">© 2019 Haiti Takes Root™ | All Rights Reserved | <a href="https://www.starmenusa.com">Making Brands Work™</a></div>
 			<img id=flower src=/flower.svg />
@@ -1271,7 +1265,8 @@ export default {
 				vert(id,vuestance,subdex,subid)
 			} else {
 				vuestance.$store.commit('vert',false)
-				vuestance.$store.commit('setID',id)
+        vuestance.$store.commit('setID',id)
+        vuestance.$store.commit('setDex',-1)
 				vuestance.$store.commit('setCur',curdex)
 				vuestance.$store.commit('setCurSub','')
 				let base = (vuestance.settings.basePush === '/' ? '' : vuestance.settings.basePush)
@@ -1386,8 +1381,40 @@ export default {
 				//	up(this.$store)
 				//}
 			}
-		}
-
+    },
+    showSubItem(subItemIndex, activeIndexStr, slide) {
+      console.log(subItemIndex, +activeIndexStr, slide);
+      if (!slide) {
+        return true;
+      }
+      const { maxSubsShowed, subs, fixedSubsCount, prevItemsShown } = slide;
+      if (!maxSubsShowed) {
+        return true;
+      }
+      if (fixedSubsCount && subItemIndex < fixedSubsCount) {
+        return true;
+      }
+      const min = fixedSubsCount || 0;
+      const max = (subs || []).length || 0;
+      if (max - min <= maxSubsShowed) {
+        return true;
+      }
+      const activeIndex = +activeIndexStr;
+      let min0 = activeIndex;
+      let max0 = min0 + maxSubsShowed;
+      if (min0 < min) {
+        min0 = min - (prevItemsShown || 0);
+        max0 = min0 + maxSubsShowed;
+      }
+      if (max0 > max) {
+        max0 = max;
+        min0 = max0 - maxSubsShowed;
+      }
+      if (subItemIndex >= min0 && subItemIndex < max0) {
+        return true
+      }
+      return false;
+    }
 	}
 }
 </script>

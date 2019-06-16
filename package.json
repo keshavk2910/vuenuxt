@@ -6,7 +6,7 @@
   "private": true,
   "scripts": {
     "generate": "nuxt generate",
-    "dev":"nuxt"
+    "dev": "nuxt"
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.4.1",

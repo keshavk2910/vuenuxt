@@ -80,6 +80,9 @@ export default {
 					{
 						id: "activities",
 						name: "Activités",
+						fixedSubsCount: 1,
+						maxSubsShowed: 3,
+						prevItemsShown: 0, // make 1 to show 1 previous item
 						subs: [
 							{
 								id:"activities_about",
