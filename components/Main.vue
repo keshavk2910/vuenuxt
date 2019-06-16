@@ -1400,10 +1400,10 @@ export default {
         return true;
       }
       const activeIndex = +activeIndexStr;
-      let min0 = activeIndex;
+      let min0 = activeIndex - (prevItemsShown || 0);
       let max0 = min0 + maxSubsShowed;
       if (min0 < min) {
-        min0 = min - (prevItemsShown || 0);
+        min0 = min;
         max0 = min0 + maxSubsShowed;
       }
       if (max0 > max) {
