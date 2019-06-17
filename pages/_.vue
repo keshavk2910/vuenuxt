@@ -13,7 +13,7 @@ export default {
 		return {
 			settings: {
 				// baseURL: 'http://localhost:8080',
-				// baseURL: 'https://staging.haititakesroot.org',
+				// baseURL: 'https://stagingextra.haititakesroot.org/',
 				baseURL: 'http://localhost:3000',
 				basePush: '/', 
 				backText:'back',
@@ -95,7 +95,7 @@ export default {
 						name: "Activities",
 						fixedSubsCount: 1,
 						maxSubsShowed: 3,
-						prevItemsShown: 0, // make 1 to show 1 previous item
+						prevItemsShown: 1, // make 1 to show 1 previous item
 						subs: [
 							{
 								id:"activities_about",

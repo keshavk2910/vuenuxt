@@ -884,6 +884,8 @@ export default {
 						appendArrows: carouselNav,
 						prevArrow: "<img src=prev.svg class=prevgal />",
 						nextArrow: "<img src=nextrow.svg class=nextgal />",
+						autoplay: true,
+					speed: 1000,
 					})
 				})
 			}
@@ -899,6 +901,8 @@ export default {
 						appendArrows: carouselNav,
 						prevArrow: "<img src=prev.svg class=prevgal />",
 						nextArrow: "<img src=nextrow.svg class=nextgal />",
+						cssEase: 'cubic-bezier(0.600, -0.280, 0.735, 0.045)',
+					speed: 1000,
 						responsive: [
 							{
 								breakpoint: 770,
@@ -921,6 +925,8 @@ export default {
 					variableWidth: true,
 					infinite: false,
 					appendArrows: '#coalition_who_carousel_nav',
+					speed: 2000,
+            autoplaySpeed: 3000,
 					// slidesToScroll: 3,
 					prevArrow: "<img src=prev.svg class=prevgal />",
 					nextArrow: "<img src=nextrow.svg class=nextgal />",

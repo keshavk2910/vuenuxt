@@ -10,7 +10,7 @@ export default {
   	data: function() {
 	    return {
 	      	settings: {
-				// baseURL: 'https://staging.haititakesroot.org',
+				// baseURL: 'https://stagingextra.haititakesroot.org/',
 				 baseURL: 'http://localhost:3000',
 				basePush:'/cr',
 				backText:'Fè bak',
@@ -81,7 +81,7 @@ export default {
 						name: "Activités",
 						fixedSubsCount: 1,
 						maxSubsShowed: 3,
-						prevItemsShown: 0, // make 1 to show 1 previous item
+						prevItemsShown: 1, // make 1 to show 1 previous item
 						subs: [
 							{
 								id:"activities_about",
