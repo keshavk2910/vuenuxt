@@ -901,14 +901,15 @@ export default {
 						appendArrows: carouselNav,
 						prevArrow: "<img src=prev.svg class=prevgal />",
 						nextArrow: "<img src=nextrow.svg class=nextgal />",
-						cssEase: 'cubic-bezier(0.600, -0.280, 0.735, 0.045)',
-					speed: 1000,
+						cssEase: 'ease-in-out',
+						centerMode: false,
+						easing: 'ease-in-out',
 						responsive: [
 							{
 								breakpoint: 770,
 								settings: {
 									slidesToShow: 1,
-									slidesToScroll: 1
+									slidesToScroll: 1,
 								}
 							}
 						]

@@ -11,11 +11,13 @@
         #impact_about p.widthvariation{
             max-width: 60%;
         }
+        @media (min-width: 769px){
         #impact_about #youwrap {
     margin: 30px auto 20px auto;
     width: 55%;
     padding-bottom: 28.5%;
 }
+        }
         #impact_about .header_wrap {
             width:100%;
         }
@@ -93,7 +95,26 @@
           }
         }
 #next {
-	left: 170px;}
+    left: 170px;}
+    @media screen and (max-width: 770px){
+#impact h1 {
+    font-size: 25px!important;
+    margin-bottom: 20px!important;
+}
+#impact_about p.widthvariation {
+    max-width: 100%;
+}
+#impact_about #youwrap {
+    margin-top:20px!important;
+    margin-bottom:0!important;
+    }
+}
+@media only screen and (max-width: 900px){
+#impact_about > div > div.flex > p {
+    font-size: 0.9em !important;
+    line-height: 1.1em!important;
+}
+}
     </style>
 <div class=wrap>
     <div id="impact_intro">
@@ -106,7 +127,7 @@
     <div id=youwrap>
         <iframe id=you width="560" height="315" src="https://www.youtube.com/embed/HtgFx72dj9M" frameborder="0" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
-    <a class="opener bindme curs">Mapping Our Impact<img src="/down.png"></a>
+    <a class="opener bindme curs">Cartographie de notre impact<img src="/down.png"></a>
 </div>
 <div class="subs">
         <div id="impact_about" class="sub" style="margin-top: 0px;">

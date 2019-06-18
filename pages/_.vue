@@ -127,10 +127,10 @@ export default {
 						id: "news",
 						name: "News + Events",
 						subs: [
-							{
-								id: "news_calendar",
-								name: "Calendar",
-							},
+							//{
+							//	id: "news_calendar",
+							//		name: "Calendar",
+							//},
 							{
 								id: "news_blog",
 								name: "Blog",

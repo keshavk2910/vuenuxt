@@ -114,10 +114,10 @@ export default {
 						id: "news",
 						name: "Nouvelles et événements",
 						subs: [
-							{
-								id: "news_calendar",
-								name: "Calendar",
-							},
+							//{
+							//	id: "news_calendar",
+							//	name: "Calendar",
+							//},
 							{
 								id: "news_blog",
 								name: "Blog",
