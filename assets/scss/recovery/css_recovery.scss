@@ -4323,6 +4323,7 @@ nav[data-currentsub=news_blog][data-postopen=true] {
 		}
 	}
 }
+
 .postgrid {
 	width: 100%;
 	max-width: 70vw;
@@ -4334,8 +4335,8 @@ nav[data-currentsub=news_blog][data-postopen=true] {
 	flex-wrap: wrap;
 	> li {
 		flex-wrap: wrap;
-		width: calc(60% - 5px);
-		min-height: 575px;
+		width: calc(50% - 5px);
+		min-height: 684px;
 		padding: 40px;
 		margin-bottom: 10px;
 		display: none;
@@ -4350,7 +4351,7 @@ nav[data-currentsub=news_blog][data-postopen=true] {
 			display: flex;
 		}
 		&.smaller {
-			width: calc(40% - 5px);
+			width: calc(50% - 5px);
 		}
 		&.wider {
 			width: 100%;
@@ -4600,6 +4601,16 @@ nav[data-currentsub=news_blog][data-postopen=true] {
 		}
 	}
 }
+@media(max-width:1140px) {
+	.postgrid {
+		> li {
+			width: calc(100% - 5px);
+			&.smaller {
+				width: calc(100% - 5px);
+			}
+}
+}
+}
 @media(max-height:737px) {
 	.events_calendar_carousel.full_size {
 		li {
@@ -4768,9 +4779,11 @@ nav[data-currentsub=news_blog][data-postopen=true] {
 
 @media screen and(max-width:770px) {
 	.proj3_int h1 {
-		margin-top: 68vh!important;
+		margin-top: 54vh!important;
 	}
-
+	.proj2_int h1 {
+		margin-top: 0vh!important;
+	}
 	#viewer[data-currentsub=mission_how] {
 		#mission {
 			overflow-y: scroll!important;
@@ -5523,7 +5536,6 @@ nav[data-currentsub=news_blog][data-postopen=true] {
 		overflow: hidden;
 		.projmain {
 			padding: 0 5vw;
-			background-image: url(/proj1troback_mobile.jpg);
 			.boxbutt {
 				top: 8vh;
 			}
@@ -5744,7 +5756,7 @@ nav[data-currentsub=news_blog][data-postopen=true] {
 	}
 	#next {
 		font-size: 12px;
-		left: 90px;
+		left: 100px;
 		img {
 			width: 20px;
 		}
@@ -5823,4 +5835,31 @@ nav[data-currentsub=news_blog][data-postopen=true] {
 	}
 	.proj6_int{
 		background-image: url(/act_proj6.jpg);
+		}
+		.slide h1 {
+			text-transform: capitalize!important;
+		}
+		.postgrid > li.modal_open .blogpost_related_posts li h3{
+			font-size: 16px!important;
+		}
+		@media screen and(max-width:770px) {.postgrid > li.modal_open .blogpost_related_posts li h3{
+			font-size: 24px!important;
+		}}
+		.subname, .slidename {
+			text-transform: capitalize!important;
+		}
+		.tab[data-slide="impact"] .subdots li:only-child:before {
+			bottom: calc(50% + 10px)!important;
+		} 
+		.tab[data-slide="impact"] .subdots li:only-child:after {
+			top: calc(50% + -2px)!important;
+		}
+		.tab[data-slide="news"] .subdots li:before {
+			bottom: calc(50% - 1px)!important;
+		}
+		.tab[data-slide="news"] .subdots li:after {
+			top: calc(50% + 9px)!important;
+		}
+		@media screen and(min-width:770px) {.activitiesprojsub h1 {
+			margin-top: 11vh!important;}
 		}

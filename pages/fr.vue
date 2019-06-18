@@ -11,7 +11,7 @@ export default {
 	    return {
 	      	settings: {
 	      		// baseURL: 'http://localhost:8080',
-				// baseURL: 'https://stagingextra.haititakesroot.org/',
+				 //baseURL: 'https://staging.haititakesroot.org/',
 				 baseURL: 'http://localhost:3000',
 				basePush:'/fr',
 				backText:'précédent',

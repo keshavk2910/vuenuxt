@@ -10,9 +10,9 @@ export default {
   	data: function() {
 	    return {
 	      	settings: {
-				// baseURL: 'https://stagingextra.haititakesroot.org/',
+				// baseURL: 'https://staging.haititakesroot.org/',
 				 baseURL: 'http://localhost:3000',
-				basePush:'/cr',
+				 basePush:'/cr',
 				backText:'Fè bak',
 				nextText:'Fè avan',
 				exploreText:'Eksplore',
@@ -118,7 +118,7 @@ export default {
 						//		name: "Calendar",
 						//	},
 							{
-							id: "news_blog",
+							id: "news_blog1",
 							name: "Blog",
 						},
 						],

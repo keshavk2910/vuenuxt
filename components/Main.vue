@@ -926,8 +926,6 @@ export default {
 					variableWidth: true,
 					infinite: false,
 					appendArrows: '#coalition_who_carousel_nav',
-					speed: 2000,
-            autoplaySpeed: 3000,
 					// slidesToScroll: 3,
 					prevArrow: "<img src=prev.svg class=prevgal />",
 					nextArrow: "<img src=nextrow.svg class=nextgal />",
@@ -1057,7 +1055,6 @@ export default {
 					document.querySelector(proj).style.transform = 'translateY(0)'
 					document.querySelector(proj).style.marginTop = '0'
 					document.querySelector(proj).classList.add('openproj')
-					console.log(document.querySelector(proj));
 					store.commit('proj',true)
 				})
 				bindbox.classList.remove('bindbox')
