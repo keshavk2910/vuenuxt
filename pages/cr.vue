@@ -112,16 +112,16 @@ export default {
 					{
 						id: "news",
 						name: "Nouvèl ak evènman ki planifye",
-						//subs: [
+						subs: [
 						//	{
 						//		id: "news_calendar",
 						//		name: "Calendar",
 						//	},
-						//	{
-						//		id: "news_blog",
-						//		name: "Blog",
-						//	},
-						//],
+							{
+							id: "news_blog",
+							name: "Blog",
+						},
+						],
 					},
 					{
 						id: 'contact',
