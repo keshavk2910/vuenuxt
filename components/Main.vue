@@ -314,9 +314,9 @@ store.commit("dua",4)
 			}
 				curMarg -= 100;			
 			sub.style.marginTop = curMarg + 'vh'
-			store.commit('hiDex')
 			//do not update the history if we are navigating within a project
 			if (!store.state.proj) {
+			    store.commit('hiDex')
 				//reset open projects
 				let proj = document.querySelector('.openproj')
 				
@@ -1055,7 +1055,9 @@ export default {
 					document.querySelector(proj).style.opacity = '1'
 					document.querySelector(proj).style.pointerEvents = 'auto'
 					document.querySelector(proj).style.transform = 'translateY(0)'
+					document.querySelector(proj).style.marginTop = '0'
 					document.querySelector(proj).classList.add('openproj')
+					console.log(document.querySelector(proj));
 					store.commit('proj',true)
 				})
 				bindbox.classList.remove('bindbox')
