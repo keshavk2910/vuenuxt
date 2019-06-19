@@ -4336,7 +4336,7 @@ nav[data-currentsub=news_blog][data-postopen=true] {
 	> li {
 		flex-wrap: wrap;
 		width: calc(50% - 5px);
-		min-height: 684px;
+		min-height: 684px!important;
 		padding: 40px;
 		margin-bottom: 10px;
 		display: none;
@@ -4716,7 +4716,7 @@ nav[data-currentsub=news_blog][data-postopen=true] {
 			font-size: 76px;
 		}
 		p {
-			font-size: 18px;
+			font-size: 15px;
 			line-height: 1.8;
 		}
 		ol {
@@ -4778,12 +4778,7 @@ nav[data-currentsub=news_blog][data-postopen=true] {
 
 
 @media screen and(max-width:770px) {
-	.proj3_int h1 {
-		margin-top: 54vh!important;
-	}
-	.proj2_int h1 {
-		margin-top: 0vh!important;
-	}
+	
 	#viewer[data-currentsub=mission_how] {
 		#mission {
 			overflow-y: scroll!important;
@@ -5860,6 +5855,33 @@ nav[data-currentsub=news_blog][data-postopen=true] {
 		.tab[data-slide="news"] .subdots li:after {
 			top: calc(50% + 9px)!important;
 		}
-		@media screen and(min-width:770px) {.activitiesprojsub h1 {
+		@media screen and(min-width:770px) {
+			.activitiesprojsub h1 {
 			margin-top: 11vh!important;}
+			.activitiesprojsub .proj5_int h1 {
+				margin-top: 13vh!important;}
+				.activitiesprojsub .proj5_int p {
+					margin-bottom: 10px!important;}
 		}
+		.openproj .opener {
+			margin:-25px 0 !important;
+		}
+		@media screen and(max-width:870px) {.activitiesprojsub h1 {
+			font-size: 32px!important;}}
+			@media screen and (max-width: 480px){
+.activitiesprojsub .projmain h1 {
+    margin-top: 17vh;
+}
+.activitiesprojsub h1 {
+    font-size: 21px !important;
+}
+.openproj .opener {
+    margin: 0 0 !important;
+}
+.projmain {
+	display: block!important;
+}
+.openproj .opener {
+	transform: none !important;
+}
+}
