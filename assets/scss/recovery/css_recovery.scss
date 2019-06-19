@@ -5846,6 +5846,12 @@ nav[data-currentsub=news_blog][data-postopen=true] {
 		.tab[data-slide="impact"] .subdots li:only-child:before {
 			bottom: calc(50% + 10px)!important;
 		} 
+		.tab[data-slide="impact"].Impactfr .subdots li:only-child:before {
+			bottom: calc(50% + 13px)!important;
+		} 
+		.tab[data-slide="impact"].Impactfr .subdots li:only-child:after {
+			top: calc(50% + -5px)!important;
+		} 
 		.tab[data-slide="impact"] .subdots li:only-child:after {
 			top: calc(50% + -2px)!important;
 		}
@@ -5854,6 +5860,19 @@ nav[data-currentsub=news_blog][data-postopen=true] {
 		}
 		.tab[data-slide="news"] .subdots li:after {
 			top: calc(50% + 9px)!important;
+		}
+		.tab[data-slide="mission"].missionfr .subdots li:first-child:before {
+			bottom: calc(50% - 5px) !important;
+		}
+		.tab[data-slide="mission"].missionfr .subdots li:first-child:after {
+			top: calc(50% + 13px) !important;
+			bottom: 0 !important;
+		}
+		.tab[data-slide="mission"].missionfr .subdots li:last-child:before {
+			bottom: calc(50% + 10px) !important;
+		}
+		.tab[data-slide="mission"].missionfr .subdots li:last-child:after {
+			top: calc(50% + -2px) !important;
 		}
 		@media screen and(min-width:770px) {
 			.activitiesprojsub h1 {

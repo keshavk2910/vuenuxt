@@ -26,6 +26,7 @@ export default {
 					{
 						id: 'mission',
 						name: "Notre Mission",
+						class: 'missionfr',
 						subs: [
 							{
 								id: 'mission_why',
@@ -40,6 +41,7 @@ export default {
 					{
 						id: 'impact',
 						name: "Impact",
+						class: 'Impactfr',
 						subs: [
 							{
 						 		id:"impact_about",

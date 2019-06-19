@@ -25,6 +25,7 @@ export default {
 					{
 						id: 'mission',
 						name: "Misyon",
+						class: 'missionfr',
 						subs: [
 							{
 								id: 'mission_why',
@@ -39,6 +40,7 @@ export default {
 					{
 						id: 'impact',
 						name: "Enpak",
+						class: 'Impactfr',
 						subs: [
 							{
 						 		id:"impact_about",
