@@ -32,7 +32,7 @@ export default {
 							},
 							{
 								id: 'mission_how',
-								name: "KI JAN",
+								name: "Ki Jan",
 							}
 						]
 					},
@@ -64,7 +64,7 @@ export default {
 							},
 							{
 						 	       id:"coalition_structure",
-						 	       name: 'Prensip ki mete nou sou pye',
+						 	       name: 'Prensip Ki Mete Nou Sou Pye',
 							},
 							// {
 							// 	id:"coalition_board",
@@ -89,29 +89,29 @@ export default {
 							},
 							{
 								id:"activities_proj1",
-								name: 'Premye pwojè a',
+								name: 'Premye Pwojè A',
 							},
 							{
 								id:"activities_proj2",
-								name: '2e pwojè',
+								name: '2e Pwojè',
 							},
 							{
 								id:"activities_proj3",
-								name: '3e pwojè',
+								name: '3e Pwojè',
 							},
 							{
 								id:"activities_proj4",
-								name: '4e pwojè',
+								name: '4e Pwojè',
 							},
 							{
 								id:"activities_proj5",
-								name: '5e pwojè',
+								name: '5e Pwojè',
 							}
 						]
 					},
 					{
 						id: "news",
-						name: "Nouvèl ak evènman ki planifye",
+						name: "Nouvèl Ak Evènman Ki Planifye",
 						subs: [
 						//	{
 						//		id: "news_calendar",

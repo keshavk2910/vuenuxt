@@ -140,7 +140,7 @@ export default {
 					{
 						id: 'contact',
 						name: 'Contact',
-					}
+					},
 				],
 			}
 		}

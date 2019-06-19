@@ -112,7 +112,7 @@ export default {
 					},
 					{
 						id: "news",
-						name: "Nouvelles et événements",
+						name: "Nouvelles Et Événements",
 						subs: [
 							//{
 							//	id: "news_calendar",
