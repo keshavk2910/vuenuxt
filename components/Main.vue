@@ -33,7 +33,15 @@
 			<!-- {{$store.state.sliceTemp}} -->
 			<ul id=dots>
 				<!-- {{$store.state.id}} -->
-				<li v-for="(slide,index) in $store.state.allslides" :class="{'active':index===$store.state.current,'subnav':slide.subs && slide.subs.length > 0}" class=tab :data-slide="slide.id" v-bind:key="slide.id">
+				<li v-for="(slide,index) in $store.state.allslides"
+					:class="{
+						'active':index===$store.state.current,
+						'subnav':slide.subs && slide.subs.length > 0, 
+						[mergeClasses(slide.class)]: true,
+					}"
+					class=tab
+					:data-slide="slide.id"
+					v-bind:key="slide.id">
 				  <div class=wrap>
             <a @click=tab($event,false) :href="(settings.basePush === '/' ? '/' : settings.basePush+'/')+slide.id+'/'" :data-dex="index">
               <span class=slidename :data-dex="index">{{ slide.name }}</span>
@@ -41,7 +49,10 @@
             </a>
           </div>
           <ul v-if="slide.subs && slide.subs.length > 0" class=subdots>
-            <li v-for="(sub,index) in slide.subs" :data-slide="slide.id" v-bind:key="sub.id" v-bind:style="{ display: (showSubItem(index, $store.state.subdex, slide) ? 'flex' : 'none') }">
+            <li v-for="(sub,index) in slide.subs"
+			  :data-slide="slide.id" v-bind:key="sub.id"
+			  v-bind:style="{ display: (showSubItem(index, $store.state.subdex, slide) ? 'flex' : 'none') }"
+			  v-bind:class="mergeClasses(sub.class)">
               <a @click=tab($event,true) :data-subdex="index" :data-subid=sub.id>
                 <span class=subname :data-subdex=index :data-subid=sub.id>{{ sub.name }}</span>
                 <span class=subdot :data-subdex=index :data-subid=sub.id></span>
@@ -1387,40 +1398,50 @@ export default {
 				//	up(this.$store)
 				//}
 			}
-    },
-    showSubItem(subItemIndex, activeIndexStr, slide) {
-      console.log(subItemIndex, +activeIndexStr, slide);
-      if (!slide) {
-        return true;
-      }
-      const { maxSubsShowed, subs, fixedSubsCount, prevItemsShown } = slide;
-      if (!maxSubsShowed) {
-        return true;
-      }
-      if (fixedSubsCount && subItemIndex < fixedSubsCount) {
-        return true;
-      }
-      const min = fixedSubsCount || 0;
-      const max = (subs || []).length || 0;
-      if (max - min <= maxSubsShowed) {
-        return true;
-      }
-      const activeIndex = +activeIndexStr;
-      let min0 = activeIndex - (prevItemsShown || 0);
-      let max0 = min0 + maxSubsShowed;
-      if (min0 < min) {
-        min0 = min;
-        max0 = min0 + maxSubsShowed;
-      }
-      if (max0 > max) {
-        max0 = max;
-        min0 = max0 - maxSubsShowed;
-      }
-      if (subItemIndex >= min0 && subItemIndex < max0) {
-        return true
-      }
-      return false;
-    }
+		},
+		showSubItem(subItemIndex, activeIndexStr, slide) {
+			console.log(subItemIndex, +activeIndexStr, slide);
+			if (!slide) {
+				return true;
+			}
+			const { maxSubsShowed, subs, fixedSubsCount, prevItemsShown } = slide;
+			if (!maxSubsShowed) {
+				return true;
+			}
+			if (fixedSubsCount && subItemIndex < fixedSubsCount) {
+				return true;
+			}
+			const min = fixedSubsCount || 0;
+			const max = (subs || []).length || 0;
+			if (max - min <= maxSubsShowed) {
+				return true;
+			}
+			const activeIndex = +activeIndexStr;
+			let min0 = activeIndex - (prevItemsShown || 0);
+			let max0 = min0 + maxSubsShowed;
+			if (min0 < min) {
+				min0 = min;
+				max0 = min0 + maxSubsShowed;
+			}
+			if (max0 > max) {
+				max0 = max;
+				min0 = max0 - maxSubsShowed;
+			}
+			if (subItemIndex >= min0 && subItemIndex < max0) {
+				return true
+			}
+			return false;
+		},
+		mergeClasses(...classes) {
+			console.log(classes);
+			return Array.from(classes).reduce(
+				(classArray, classItem) => ([
+					...classArray,
+					...Array.from((classItem || '').split(' ')).filter(item => !!item),
+				]),
+				[],
+			).join(' ');
+		}
 	}
 }
 </script>

@@ -43,10 +43,12 @@ export default {
 					{
 						id: 'impact',
 						name: "Impact",
+						class: 'test1 test2',
 						subs: [
 							{
 								id:"impact_about",
 								name:"About",
+						        class: 'test3 test4',
 							},
 							//{
 							//	id:"impact_map",
