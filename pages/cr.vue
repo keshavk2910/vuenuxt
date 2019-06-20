@@ -10,8 +10,8 @@ export default {
   	data: function() {
 	    return {
 	      	settings: {
-				// baseURL: 'https://staging.haititakesroot.org/',
-				 baseURL: 'http://localhost:3000',
+				  baseURL: 'https://staging.haititakesroot.org/',
+				//baseURL: 'http://localhost:3000',
 				 basePush:'/cr',
 				backText:'Fè bak',
 				nextText:'Fè avan',
@@ -120,7 +120,7 @@ export default {
 						//		name: "Calendar",
 						//	},
 							{
-							id: "news_blog1",
+							id: "news_blog",
 							name: "Blog",
 						},
 						],
