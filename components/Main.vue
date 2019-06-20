@@ -194,6 +194,7 @@ const up = (vuestance) => {
 	if(store.state.proj) {
 		sub = sub.querySelector('.openproj')
 	}
+	console.log(sub);
 	if (sub) {
 		//set hamburger menu class
 		let subName = $('.open .sub').filter(':first').attr('id')
@@ -201,11 +202,10 @@ const up = (vuestance) => {
 		if(subName==="impact_stories"||subName==="impact_map"
 		||subName==="coalition_board"
 		||subName==="coalition_testimonials"
-		||subName==="news_calendar"
-		||subName==="news_blog"){
-				setTimeout(()=>{
-		store.commit('choke',false)
-	},1100)
+		||subName==="news_calendar"){
+			setTimeout(()=>{
+				store.commit('choke',false)
+			},1100)
 			return;
 		}
 		
@@ -213,6 +213,7 @@ const up = (vuestance) => {
 		// console.log("subName:",subName)
 		var curMarg = Number(sub.style.marginTop.replace(/\D/g,'')) * -1
 		if (curMarg < 0) {
+			console.log('333')
 		// if(curMarg < 0 || window.outerWidth < 770) {
 			curMarg += 100;
 			sub.style.marginTop = curMarg + 'vh'
@@ -241,6 +242,7 @@ const up = (vuestance) => {
 				projslides.forEach(function(item){item.scrollTop = 0})
 			}
 		} else {
+			console.log('112')
 			store.commit('setCurSub','')
 			store.commit('setID',parentSlide)
 			let endslash = ''
@@ -254,14 +256,14 @@ const up = (vuestance) => {
 			sub.parentNode.classList.remove('scroller')
 			// if(sub.classList.contains('openproj')) {
 				
-				//reset open projects
-				let proj = document.querySelector('.openproj')
-				if (proj) {
-					proj.style.opacity = '0'
-					proj.style.pointerEvents = 'none'
-					proj.classList.remove('openproj')
-					store.commit('proj',false)
-				}
+			//reset open projects
+			let proj = document.querySelector('.openproj')
+			if (proj) {
+				proj.style.opacity = '0'
+				proj.style.pointerEvents = 'none'
+				proj.classList.remove('openproj')
+				store.commit('proj',false)
+			}
 			// } else {
 				sub.classList.remove('open')
 				store.commit('vert',false)
@@ -293,13 +295,13 @@ const down = (vuestance) => {
 		let subName = $('#'+store.state.currentSub+'+.sub').attr('id')
 		let parentSlide = $('.open').parents('.slide').attr('id')
 		if(subName==="impact_stories"||subName==="impact_map"
-		||subName==="coalition_board"
-		||subName==="coalition_testimonials"
-		||subName==="news_calendar"
-		||subName==="news_blog"){
+			||subName==="coalition_board"
+			||subName==="coalition_testimonials"
+			||subName==="news_calendar"
+			||subName==="news_blog"){
 			setTimeout(()=>{
-		store.commit('choke',false)
-	},1100)
+				store.commit('choke',false)
+			},1100)
 			return;
 		}
 		// console.log("subName:",subName)
@@ -315,15 +317,14 @@ const down = (vuestance) => {
 				// console.log(store.state.subdex)
 
 				if(store.state.dua!==arraySub&&store.state.subdex===3){
-store.commit("satu",store.state.satu+1)
-store.commit("dua",store.state.dua+1)
-
-				}else if(store.state.subdex===arraySub-1){
-store.commit("satu",1)
-store.commit("dua",4)
+					store.commit("satu",store.state.satu+1)
+					store.commit("dua",store.state.dua+1)
+				} else if(store.state.subdex===arraySub-1){
+					store.commit("satu",1)
+					store.commit("dua",4)
 				}
 			}
-				curMarg -= 100;			
+			curMarg -= 100;			
 			sub.style.marginTop = curMarg + 'vh'
 			//do not update the history if we are navigating within a project
 			if (!store.state.proj) {
