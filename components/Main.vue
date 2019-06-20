@@ -541,7 +541,7 @@ const loadWPData = async function(type,store,baseurl, callback) {
 
 //fetch images separately since it takes a while
 async function fetchImages(url,id,type) {
-	let imageData = await axios(url)
+    let imageData = await axios(url)
 	imageData = imageData.data
 	if (type == "blogpost") {
 		$('#'+type+'-'+id).find('.'+type+'_image').css('background-image','url('+imageData.media_details.sizes.large.source_url+')')
@@ -736,7 +736,8 @@ const loadSlide = async function(id,vuestance,isPrev) {
 		if (basePush !== '/') {
 			file = file + '-' + basePush.split('/')[1]
 		}
-		let nextMark = await axios(baseURL+'/'+file+'.html')
+		const url = `${baseURL}/${file}.html`.replace(/\/+/gi, '/').replace(':/', '://');
+		let nextMark = await axios(url)
 		let order = Number(store.state.pages[id].dex)
 		let img = id + '.jpg' // STATIC MOD FOR PUSH
 		let newSlide = {
@@ -1050,7 +1051,7 @@ export default {
 					if (basePush !== '/') {
 						endslash = '/'
 					}
-					window.history.pushState(null,settings.title,settings.baseURL+settings.basePush+endslash+"news/sub=news_blog&postid="+postid)
+					window.history.pushState(null,settings.title,settings.baseURL+settings.basePush+endslash+"news/?sub=news_blog&postid="+postid)
 					$modal.find('.close_modal').on('click',e=>{
 						$('.modal_open').removeClass('modal_open')
 						store.commit('toggleModal',false)
@@ -1230,11 +1231,11 @@ export default {
 			let urlParams = new URLSearchParams(window.location.search)
 			//for some reason splitting the pathname returns empty results, so we gotta get rid of those
 			let currentPath = window.location.pathname.split("/").filter(function(p){return p.length > 0})
-			let id = currentPath[currentPath.length-1]
+			let id = currentPath[0]
 			let pathBase = currentPath[0]
 			// console.log("currentPath",currentPath,"id",id,"pathBase",pathBase,"urlParams",urlParams)
 			if(id && (id.length ==0 || pathBase=='fr' || pathBase=='cr')) {
-				id='home'
+				id= currentPath[1] || 'home'
 			} else if (!id) {
 				id ='home'
 			}
