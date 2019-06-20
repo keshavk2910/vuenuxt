@@ -782,7 +782,14 @@ const vert = function(id,vuestance,subdex,subid) {
 	if (basePush !== '/') {
 		endslash = '/'
 	}
-	window.history.pushState(null,settings.title,settings.baseURL+settings.basePush+endslash+id+"/?sub="+subid)
+	let currentPath = window.location.pathname.split("/").filter(function(p){return p.length > 0})
+	const basePath = currentPath[0];
+	let langPrefix = '';
+	if (['fr', 'cr'].includes(basePath)) {
+      langPrefix = basePath + '/'
+	}
+	const url = (settings.baseURL+settings.basePush+endslash+langPrefix + id+"/?sub="+subid).replace(/\/\//g, '/').replace(':/', '://')
+	window.history.pushState(null,settings.title,url)
 	// document.querySelector('#next').style.opacity='1'
 	// document.querySelector('#next').style.pointerEvents='auto'
 	// document.querySelector('#back').style.opacity='1'
