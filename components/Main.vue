@@ -416,6 +416,69 @@ const prev = (store,settings) => {
 	},800)
 }
 
+//navigate from one slide or sub to the previous parent slide
+const prevSub = (store,settings) => {
+	var view = document.querySelector('#viewer');
+	var slide = view.firstElementChild;
+	var count = view.dataset.count;
+	var curMarg = Number(slide.style.marginLeft.slice(0,-1));
+	if(store.state.current!=0) {
+		if(curMarg < 0) {
+			curMarg += 100;
+			slide.style.marginLeft = curMarg+'%';
+		}
+		store.commit('prev')
+		let prevdex = Number(store.state.current)
+		let prevID = store.state.allslides[prevdex].id
+		let title = store.state.allslides[prevdex].name
+		store.commit('setID',prevID)
+
+		let prevSubs = store.state.allslides[prevdex].subs
+		if (prevSubs) {
+			const lastSub = prevSubs.length && prevSubs[prevSubs.length - 1];
+			const lastSubId = lastSub && lastSub.id;
+			store.commit('setCurSub', lastSubId)
+			store.commit('setDex', prevSubs.length)
+		} else {
+			//reset current sub counter since this is a main slide navigation)
+			store.commit('setCurSub','')
+		}
+		// reset positioning on subs to fix nav issues
+
+		// $('.subs').css('transform','')
+		// $('.subs').css('margin-top','')
+		// $('.sub').css('margin-top','')
+		// $('.sub').css('transform','')
+
+		// $('.projmode').css('transform','')
+		// $('.projmode').css('margin-top','')
+		//reset open projects
+		let proj = document.querySelector('.openproj')
+		if (proj) {
+			proj.style.opacity = '0'
+			proj.style.pointerEvents = 'none'
+			proj.classList.remove('openproj')
+			store.commit('proj',false)
+		}
+		if(prevID=='home') {
+			document.querySelector('.vidwrap').style.display = 'block'
+			let endslash = ''
+			if (basePush !== '/') {
+				endslash = '/'
+			}
+			window.history.pushState(null,settings.title,settings.baseURL+settings.basePush+endslash)
+			document.title = settings.title
+		} else {
+			let base = (settings.basePush === '/' ? '' : settings.basePush)
+			window.history.pushState(null,settings.title+" | "+title,settings.baseURL+base+'/'+prevID+'/')
+			document.title = settings.title+" | "+title
+		}
+	}
+	setTimeout(()=>{
+		store.commit('choke',false)
+	},800)
+}
+
 //navigate from one slide or sub to the next parent slide
 const next = async (store,settings) => {
 	cleanOrder(store)
@@ -1361,9 +1424,54 @@ export default {
 				console.log("up novert")
 				up(vuestance)
 			} else {
-				let id = vuestance.$store.state.id
-				let subid = $('#'+id).find('.subs .sub:first').attr('id')
-				vert(id,vuestance,0,subid)
+				let proj = document.querySelector('.openproj')
+				if (showNext || !!proj) {
+					let id = vuestance.$store.state.id
+					let subid = $('#'+id).find('.subs .sub:first').attr('id')
+					vert(id,vuestance,0,subid)
+				} else {
+					prevSub(vuestance.$store, vuestance.settings);
+					let id = vuestance.$store.state.id
+					let subid = $('#'+id).find('.subs .sub:first').attr('id')
+					vert(id,vuestance,0,subid)
+					let open = document.querySelector('.open')
+					if (open) {
+						curMarg = Number(open.style.marginTop.replace(/\D/g,'')) * -1
+					}
+					if (open && curMarg > ((open.children.length - 1) * -100)) {
+						//load the next sub
+						curMarg -= 100 * (open.children.length - 1);
+						open.style.marginTop = curMarg + 'vh'
+						store.commit('setDex', open.children.length - 1);
+						let nextSub = $('#'+store.state.currentSub+'+.sub').attr('id')
+						let parentSlide = $('.open').parents('.slide').attr('id')
+						console.log(nextSub,"nextSub novert")
+						store.commit('choke',false)
+						if (nextSub) {
+							//reset open projects
+							let proj = document.querySelector('.openproj')
+							if (proj) {
+								proj.style.opacity = '0'
+								proj.style.pointerEvents = 'none'
+								proj.classList.remove('openproj')
+								store.commit('proj',false)
+							}
+							//reset sub scroll position
+							document.querySelector("#"+parentSlide).scrollTop = 0
+							store.commit('setID',parentSlide)
+							store.commit('setCurSub',nextSub)
+							store.commit('vert',true)
+							let endslash = ''
+							if (basePush !== '/') {
+								endslash = '/'
+							}
+							window.history.pushState(null,settings.title,settings.baseURL+settings.basePush+endslash+parentSlide+"/"+'?sub='+nextSub)
+						} else {	
+							let projslides = document.querySelectorAll('.projslide')
+							projslides.forEach(function(item){item.scrollTop = 0})
+						}
+					}
+				}
 			}
 		},
 		//for the hamburger "explore" menu
@@ -1400,7 +1508,6 @@ export default {
 			}
 		},
 		showSubItem(subItemIndex, activeIndexStr, slide) {
-			console.log(subItemIndex, +activeIndexStr, slide);
 			if (!slide) {
 				return true;
 			}
@@ -1433,7 +1540,6 @@ export default {
 			return false;
 		},
 		mergeClasses(...classes) {
-			console.log(classes);
 			return Array.from(classes).reduce(
 				(classArray, classItem) => ([
 					...classArray,
