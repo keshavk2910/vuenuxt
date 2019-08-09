@@ -228,6 +228,7 @@
 
 
 #coalition_structure {
+	display: none;
 	background-color: #E9DBC6;
 	position: relative;
 	flex-direction: row;
@@ -251,7 +252,7 @@
 		fill: #3E7A31 !important;
 	}
 	.cls-5:hover  {
-		fill: #A8CE38 !important;
+		fill: #00000 !important;
 		stroke: #ece5c9 !important;
 		stroke-width: 3px;
 	}

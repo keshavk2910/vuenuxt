@@ -1318,6 +1318,65 @@ h4 {
 		width: 50%;
 	}
 }
+
+#impact_map {
+	
+	svg {
+		fill: #000000;
+	}
+	.cls-5 {
+		fill: #ece5c9 !important;
+	}
+	.cls-7 {
+		fill: #ece5c9 !important;
+	}
+	.cls-6 {
+		fill: #ece5c9 !important;
+	}
+	.cls-10, .cls-9 {
+		transition: all .3s ease;
+		position: relative;
+		fill: $color_fern_green_approx!important;
+		&:hover {
+			fill: $color_atlantis_approx!important;
+			stroke: $color_aths_special_approx!important;
+			stroke-width: 1px;
+		}
+	}
+	
+	.blurb {
+		position: absolute;
+		top: 0;
+		left: 0;
+		color: $color_dune_approx;
+	}
+	.tooltip_outer {
+		position: absolute;
+		bottom: auto!important;
+		top: 70%!important;
+		left: 15%!important;
+		right: 50%!important;
+		transition: all .3s ease;
+		background-color: $white_95;
+		background: url(/copyblock.png);
+		background-size: cover;
+		padding: 20px;
+		opacity: 0;
+		h4 {
+			margin-top: 0;
+			color: $color_kelp_approx;
+		}
+		p {
+			text-align: justify;
+			max-width: 100%;
+			width: 100%;
+			color: $color_kelp_approx;
+			margin-bottom: 0;
+			line-height: 1.3;
+		}
+	}
+}
+
 #coalition_board {
 	background-color: $color_fuscous_gray_approx;
 	flex-wrap: nowrap;
@@ -5538,9 +5597,9 @@ nav[data-currentsub=news_blog][data-postopen=true] {
 				margin-top: 17vh;
 			}
 			.opener.curs {
-				position: relative;
-				bottom: 0;
-				left: auto;
+				position: absolute;
+				left: 45%;
+				bottom: 45px;
 			}
 		}
 		.wrap {
@@ -5800,6 +5859,96 @@ nav[data-currentsub=news_blog][data-postopen=true] {
 		height: 40px;
 	}
 }
+
+@media screen and (min-width: 771px) and (max-width: 991px){ 
+	#impact {
+		flex-wrap: wrap;
+		.wrap {
+			margin-bottom: 0;
+		}
+		#impact_intro {
+			width: 100%;
+			flex-wrap: wrap;
+			.header_wrap {
+				margin: 0!important;
+				width: 100%;
+				h4 {
+					margin-top: 10%;
+				}
+			}
+			> p {
+				margin: 0!important;
+				width: 100% !important;
+			}
+		}
+		#youwrap {
+			width: 100%;
+			height: 300px;
+		}
+		h1 {
+			font-size: 28px;
+			margin-bottom: 0;
+		}
+		h4 {
+			margin-top: 20%;
+		}
+		p {
+			line-height: 1.4;
+			margin-bottom: 0;
+			font-size: 22px;
+		}
+		.opener.curs {
+			margin-bottom: 0;
+		}
+	}
+}
+
+@media screen and (min-width: 1024px) and (max-height: 1366px) and (-webkit-min-device-pixel-ratio: 2)  and (orientation: portrait)  
+{
+	#impact {
+		flex-wrap: wrap;
+		.wrap {
+			margin-bottom: 0;
+		}
+		#impact_intro {
+			width: 100%;
+			flex-wrap: wrap;
+			.header_wrap {
+				margin: 0!important;
+				width: 100%;
+				h4 {
+					margin-top: 10%;
+				}
+			}
+			> p {
+				margin: 0!important;
+				width: 100% !important;
+			}
+		}
+		#youwrap {
+			width: 100%;
+			height: 440px;
+			font-size: 20px;
+		}
+		h1 {
+			font-size: 32px;
+			margin-bottom: 0;
+		}
+		h4 {
+			margin-top: 20%;
+			font-size: 20px;
+		}
+		p {
+			line-height: 1.6;
+			margin-bottom: 0;
+			font-size: 26px;
+		}
+		.opener.curs {
+			margin-bottom: 0;
+		}
+	}
+}
+
 
 #impact_about {
 	background: url(/HTR-impact-tecture.jpg);
