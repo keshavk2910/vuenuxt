@@ -11,7 +11,6 @@
 			<div class=vidshader></div>
 		</div>
 		<div id=viewer :data-count=$store.state.slides.length v-touch:swipe=swiper :data-current=$store.state.id :data-currentsub=$store.state.currentSub :data-postopen="$store.state.modal">
-		
 			<div :class="'slide '+slide.id" v-for="slide in $store.state.slides" :id="slide.id" v-bind:key="slide.id" :data-slide="slide.img" v-html="slide.mark" :data-dex="$store.state.pages[slide.id].dex">
 			</div>
 		</div>
@@ -43,7 +42,7 @@
 					:data-slide="slide.id"
 					v-bind:key="slide.id">
 				  <div class=wrap>
-            <a @click=tab($event,false) :href="(settings.basePush === '/' ? '/' : settings.basePush+'/')+slide.id+'/'" :data-dex="index">
+            <a @click=tab($event,false) :href="(settings.basePush === '/' ? '/' : settings.basePush+'')+slide.id+'/'" :data-dex="index">
               <span class=slidename :data-dex="index">{{ slide.name }}</span>
               <span class=dot :data-dex="index"></span>
             </a>
@@ -81,7 +80,9 @@ const axios = require('axios')
 const moment = require('moment')
 let nomode = false
 //change this to set staging vs production
-let baseURL = 'https://staging.haititakesroot.org'
+let baseURL = 'https://staging2.haititakesroot.org'
+// let baseURL = 'http://localhost:3000'
+
 //this gets set by the config files under pages/
 let basePush = '/'
 
@@ -103,6 +104,7 @@ function cleanOrder(store) {
 //jump directly to a specific parent slide & reset subs 
 async function goto(id,vuestance) {
 	let store = vuestance.$store
+
 	let settings = vuestance.settings
 	let view = document.querySelector('#viewer')
 	let targ = null
@@ -156,6 +158,7 @@ async function goto(id,vuestance) {
 
 //helps scrolling
 function debounce(func, wait, immediate) {
+	console.log("debounce");
 	var timeout;
 	return function() {
 		var context = this, args = arguments;
@@ -165,7 +168,7 @@ function debounce(func, wait, immediate) {
 		};
 		var callNow = immediate && !timeout;
 		clearTimeout(timeout);
-		timeout = setTimeout(later, wait);
+		// timeout = setTimeout(later, wait);
 		if (callNow) {
 			func.apply(context, args) 
 		}
@@ -181,7 +184,7 @@ const throttle = (func, limit) => {
     if (!inThrottle) {
       func.apply(context, args)
       inThrottle = true
-      setTimeout(() => inThrottle = false, limit)
+    //   setTimeout(() => inThrottle = false, limit)
     }
   }
 }
@@ -203,9 +206,9 @@ const up = (vuestance) => {
 		||subName==="coalition_board"
 		||subName==="coalition_testimonials"
 		||subName==="news_calendar"){
-			setTimeout(()=>{
+			// setTimeout(()=>{
 				store.commit('choke',false)
-			},1100)
+			// },1100)
 			return;
 		}
 		
@@ -276,9 +279,9 @@ const up = (vuestance) => {
 		// document.querySelector('#next').style.opacity='0'
 		// document.querySelector('#next').style.pointerEvents='none'
 	}
-	setTimeout(()=>{
+	// setTimeout(()=>{
 		store.commit('choke',false)
-	},1100)
+	// },1100)
 }
 
 //navigate between sub sections
@@ -299,14 +302,14 @@ const down = (vuestance) => {
 			||subName==="coalition_testimonials"
 			||subName==="news_calendar"
 			||subName==="news_blog"){
-			setTimeout(()=>{
+			// setTimeout(()=>{
 				store.commit('choke',false)
-			},1100)
+			// },1100)
 			return;
 		}
 		// console.log("subName:",subName)
-		var curMarg = Number(sub.style.marginTop.replace(/\D/g,'')) * -1
 		// console.log(sub.style)
+		var curMarg = Number(sub.style.marginTop.replace(/\D/g,'')) * -1
 		if(curMarg > ((sub.children.length - 1) * -100)) {
 			console.log("normal down scroll")
 			if(store.state.id==='activities'){
@@ -360,9 +363,9 @@ const down = (vuestance) => {
 			// document.querySelector('#next').style.pointerEvents='auto'
 		}
 	}
-	setTimeout(()=>{
+	// setTimeout(()=>{
 		store.commit('choke',false)
-	},1100)
+	// },1100)
 }
 
 //navigate from one slide or sub to the previous parent slide
@@ -399,6 +402,7 @@ const prev = (store,settings) => {
 			store.commit('proj',false)
 		}
 		if(prevID=='home') {
+			console.log(">>>>>>>>>>>>>>>>>>");
 			document.querySelector('.vidwrap').style.display = 'block'
 			let endslash = ''
 			if (basePush !== '/') {
@@ -407,14 +411,16 @@ const prev = (store,settings) => {
 			window.history.pushState(null,settings.title,settings.baseURL+settings.basePush+endslash)
 			document.title = settings.title
 		} else {
+			console.log(">>>nnnnnnnnnn>");
+
 			let base = (settings.basePush === '/' ? '' : settings.basePush)
 			window.history.pushState(null,settings.title+" | "+title,settings.baseURL+base+'/'+prevID+'/')
 			document.title = settings.title+" | "+title
 		}
 	}
-	setTimeout(()=>{
+	// setTimeout(()=>{
 		store.commit('choke',false)
-	},800)
+	// },800)
 }
 
 //navigate from one slide or sub to the previous parent slide
@@ -475,9 +481,9 @@ const prevSub = (store,settings) => {
 			document.title = settings.title+" | "+title
 		}
 	}
-	setTimeout(()=>{
+	// setTimeout(()=>{
 		store.commit('choke',false)
-	},800)
+	// },800)
 }
 
 //navigate from one slide or sub to the next parent slide
@@ -516,9 +522,9 @@ const next = async (store,settings) => {
 		let base = (settings.basePush === '/' ? '' : settings.basePush)
 		window.history.pushState(null,settings.title+" | "+title,settings.baseURL+base+'/'+nextID+'/')
 	}
-	setTimeout(()=>{
+	// setTimeout(()=>{
 		store.commit('choke',false)
-	},800)
+	// },800)
 }
 
 //helper function to make calls to WP REST API
@@ -536,11 +542,15 @@ const loadWPData = async function(type,store,baseurl, callback) {
 		url = `posts?categories=${lang_dict[baseurl]}`
 	}
 	let result = await axios([wordpress_api,url].join(""))
+	console.log("........", type);
+	console.log("........", result);
+
 	callback(result.data)
 }
 
 //fetch images separately since it takes a while
 async function fetchImages(url,id,type) {
+	console.log("fetching : " + url);
     let imageData = await axios(url)
 	imageData = imageData.data
 	if (type == "blogpost") {
@@ -890,7 +900,10 @@ export default {
 					butt.addEventListener('click',function(e){
 						$('.timeon').removeClass()
 						$(e.target).addClass('timeon')
-						$('#mapmage').attr('src', 'impact_trees_'+$(e.target).data('view')+'.svg')
+						// $('#mapmage').attr('src', 'impact_trees_'+$(e.target).data('view')+'.svg')
+						$('.impact-tree-year').hide();
+						$('#impact-tree-year-'+$(e.target).data('view')).show();
+						// class="impact-tree-year"
 					})
 					butt.classList.remove('time')
 				})
@@ -946,9 +959,9 @@ export default {
 					e.preventDefault();
 					if(formcont.dataset.off=='false') {
 						formcont.dataset.off = 'true'
-						setTimeout(function(){
+						// setTimeout(function(){
 							formcont.dataset.off='false'
-						},2000)
+						// },2000)
 						let formdata = serialize(formcont)
 						let res = await axios.post('/mailer/mailer.php',formdata)
 						formcont.innerHTML="<h2 id=thanks>Thank you for connecting!</h2>"
@@ -1158,7 +1171,6 @@ export default {
 			let tooltip = $('.bind_tooltip')
 			if(tooltip.length) {
 				$('.cls-5').mouseenter(function(e){
-					// console.log('test');
 					if($(this).attr('data-head')) {
 						var newtop = Number($(this).offset().top) + 200;
 						var newleft = Number($(this).offset().left);
@@ -1176,6 +1188,28 @@ export default {
 					tooltip.css('opacity','0');
 					tooltip.css('pointerEvents','none');
 				})
+
+				$('.cls-10, .cls-9').mouseenter(function(e){
+					// console.log('test');
+					// debugger;
+					if($(this).attr('data-head')) {
+						var newtop = Number($(this).offset().top) + 200;
+						var newleft = Number($(this).offset().left);
+						var newhead = $(this).attr('data-head');
+						var newblurb = $(this).attr('data-blurb');
+						tooltip.css('top',newtop + 'px');
+						tooltip.css('left',newleft + 'px');
+						tooltip.css('opacity','1');
+						tooltip.css('pointerEvents','auto');
+						tooltip.find('h4').text(newhead);
+						tooltip.find('p').text(newblurb);
+					}
+				})
+				$('.cls-10, .cls-9').mouseleave(function(e){
+					tooltip.css('opacity','0');
+					tooltip.css('pointerEvents','none');
+				})
+				
 				tooltip.removeClass('bind_tooltip')
 			}
 			// click to scroll
@@ -1240,12 +1274,14 @@ export default {
 			let currentPath = window.location.pathname.split("/").filter(function(p){return p.length > 0})
 			let id = currentPath[0]
 			let pathBase = currentPath[0]
-			// console.log("currentPath",currentPath,"id",id,"pathBase",pathBase,"urlParams",urlParams)
+			console.log("currentPath",currentPath,"id",id,"pathBase",pathBase,"urlParams",urlParams)
 			if(id && (id.length ==0 || pathBase=='fr' || pathBase=='cr')) {
 				id= currentPath[1] || 'home'
 			} else if (!id) {
 				id ='home'
 			}
+			document.querySelector('#preload').style.opacity = '0'
+			document.querySelector('#preload').style.pointerEvents = 'none'
 			// console.log(id)
 			//load all the slides for init + build page array
 			for (var ir = 0; ir < allslides.length; ir++) {
@@ -1260,12 +1296,14 @@ export default {
 					}
 				}
 				//preload content for all slides
-				await loadSlide(topSlide.id,vuestance,false)
+				loadSlide(topSlide.id,vuestance,false)
 			}
 			//fetch events from WP REST API
 			loadWPData("events",vuestance.$store, basePush, async events=> {
 				vuestance.$store.commit('storeEvents',events)
 				//fetch blogposts from WP REST API
+		
+				
 				loadWPData("blogposts",vuestance.$store, basePush, async blogposts=> {
 					vuestance.$store.commit('storeBlogposts',blogposts)
 					//special: for news, we need to inject the data from the WPData call
@@ -1311,10 +1349,10 @@ export default {
 					}
 					// let viewer = document.querySelector('#viewer')
 					// let video = document.querySelector('#home-hero-video')
-					setTimeout(() => {
+					// setTimeout(() => {
 						document.querySelector('#preload').style.opacity = '0'
 						document.querySelector('#preload').style.pointerEvents = 'none'
-					},1500)
+					// },1500)
 				})
 			})
 		}
@@ -1353,13 +1391,22 @@ export default {
 				document.title = "Haiti Takes Root | "+title
 				vert(id,vuestance,subdex,subid)
 			} else {
+				console.log("bbbbbbbbbbbbbbbbbbbb")
 				vuestance.$store.commit('vert',false)
-        vuestance.$store.commit('setID',id)
-        vuestance.$store.commit('setDex',-1)
+				vuestance.$store.commit('setID',id)
+				vuestance.$store.commit('setDex',-1)
 				vuestance.$store.commit('setCur',curdex)
 				vuestance.$store.commit('setCurSub','')
 				let base = (vuestance.settings.basePush === '/' ? '' : vuestance.settings.basePush)
-				window.history.pushState(null,vuestance.settings.title+" | "+id,vuestance.settings.baseURL+base+'/'+id+"/")
+				console.log("vvvv : " , base);
+				console.log("vvvv : " , vuestance.settings.baseURL+base+'/'+id+"/");
+				let url = vuestance.settings.baseURL+base+'/'+id+"/"
+				let find = '//';
+				let reg = new RegExp(find,'g')
+				url = url.replace(reg, '/')
+				url = url.replace('/', '//')
+				// console.log("vvvv : " , res);
+				window.history.pushState(null,vuestance.settings.title+" | "+id,url)
 			}
 		},
 		//triggered when clicking the "next" or "back" buttons

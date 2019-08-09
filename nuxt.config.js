@@ -3,30 +3,30 @@ const pkg = require('./package')
 module.exports = {
   mode: 'universal',
   env: {
-       // baseUrl: 'https://www.haititakesroot.org',
-       // baseUrl: 'http://localhost:3000',
-      baseUrl: 'https://staging.haititakesroot.org/',
+    // baseUrl: 'https://www.haititakesroot.org',
+    baseUrl: 'https://staging2.haititakesroot.org/',
+    // baseUrl: 'http://localhost:3000',
   },
   router: {
-          base: '/'
+    base: '/'
   },
   generate: {
-	  minify: false,
-	  routes: [
-	    '/',
-	    '/mission/',
-	    '/impact/',
-	    '/coalition/',
-	    '/activities/',
-      '/news/',
-	    '/contact/'
-	  ]
+    minify: false,
+    routes: [
+      '/',
+      'mission',
+      'impact',
+      'coalition',
+      'news',
+      'activities',
+      'contact'
+    ]
   },
   html: {
-	  minify: {
-		  minifyCSS: false,
-		  minifyJS: false
-	  }
+    minify: {
+      minifyCSS: false,
+      minifyJS: false
+    }
   },
   /*
   ** Headers of the page
@@ -42,7 +42,7 @@ module.exports = {
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       // { rel: 'stylesheet', type:'text/css', href:'/global.css' },
-      { rel: 'stylesheet', type:'text/css', href:'https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css' }
+      { rel: 'stylesheet', type: 'text/css', href: 'https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css' }
     ],
     script: [
       { src: 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js' },
@@ -68,9 +68,9 @@ module.exports = {
   ** Plugins to load before mounting the App
   */
   plugins: [
-  	{
-		src:'~plugins/touch'
-	}
+    {
+      src: '~plugins/touch'
+    }
   ],
 
   /*
@@ -102,7 +102,7 @@ module.exports = {
     ** You can extend webpack config here
     */
     extend(config, ctx) {
-      
+
     }
   }
 }

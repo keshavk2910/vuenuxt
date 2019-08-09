@@ -13,8 +13,8 @@ export default {
 		return {
 			settings: {
 				// baseURL: 'http://localhost:8080',
-				 baseURL: 'https://staging.haititakesroot.org/',
-				//baseURL: 'http://localhost:3000',
+				 baseURL: 'https://staging2.haititakesroot.org/',
+				// baseURL: 'http://localhost:3000',
 				basePush: '/', 
 				backText:'back',
 				nextText:'next',
@@ -48,14 +48,14 @@ export default {
 								id:"impact_about",
 								name:"About",
 							},
-							//{
-							//	id:"impact_map",
-							//	name:"Map",
-							//},
-							//{
-							//	id:"impact_stories",
-							//	name: "Stories",
-							//},
+							{
+								id:"impact_map",
+								name:"Map",
+							},
+							// {
+							// 	id:"impact_stories",
+							// 	name: "Stories",
+							// },
 						]
 						// subs: [
 							// {

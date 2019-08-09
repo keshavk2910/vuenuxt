@@ -76,7 +76,9 @@ const axios = require('axios')
 const moment = require('moment')
 let nomode = false
 //change this to set staging vs production
-let baseURL = 'https://staging.haititakesroot.org'
+let baseURL = 'https://staging2.haititakesroot.org'
+// let baseURL = 'http://localhost:3000'
+
 //this gets set by the config files under pages/
 let basePush = '/'
 
