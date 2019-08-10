@@ -80,8 +80,8 @@ const axios = require('axios')
 const moment = require('moment')
 let nomode = false
 //change this to set staging vs production
-let baseURL = 'https://staging2.haititakesroot.org'
-// let baseURL = 'http://localhost:3000'
+// let baseURL = 'https://staging2.haititakesroot.org'
+let baseURL = 'http://localhost:3000'
 
 //this gets set by the config files under pages/
 let basePush = '/'
@@ -647,7 +647,8 @@ const blogControl =  function(type,value,store) {
 	// console.log("blogControl type:",type,"value:",value)
 	if (type == "search") {
 		if (value.length > 0) {
-			$('.filtered').removeClass('filtered')
+			// $('.filtered').removeClass('filtered')
+			$('.filtered').removeClass('visible')
 			value = value.toLowerCase()
 			resultSet = store.state.blogposts.filter(bp=>{
 				if (bp.title.rendered.toLowerCase().includes(value) || bp.content.rendered.toLowerCase().includes(value)) {
@@ -655,19 +656,36 @@ const blogControl =  function(type,value,store) {
 				}
 			})
 			for (var iy = 0; iy < resultSet.length; iy++) {
-				$('#blogpost-'+resultSet[iy].id).addClass('filtered')
+				$('#blogpost-'+resultSet[iy].id).addClass('visible')
 			}
 		} else {
+			$('.filtered').addClass('visible')
+
 			$('#news_blogposts > li').not('#events_card').addClass('filtered')	
 		}
+		return;
 	}
 	if (type == "filter") {
 		if (value != "*") {
-			$('.filtered').removeClass('filtered')
+			var category = $('.filtered').data('category'); //getter
+			let blogPost = $("ul").find("li[data-category='" + category + "']");
+			blogPost.addClass('visible');
+
+			console.log("cat ............. : " , category);
+			let posts = document.getElementsByClassName("filtered");
+			if( category != undefined && !(category.includes(value))){
+				console.log(" removing :" , category)
+				let blogPost = $("ul").find("li[data-category='" + category + "']");
+				blogPost.removeClass('visible');
+				$('.filtered').addClass('filtered')
+			}else{
+				$('.filtered').addClass('visible')
+			}			
 			$('#news_blogposts li[data-category="'+value+'"]').addClass('filtered')
 		} else {
-			$('#news_blogposts > li').not('#events_card').addClass('filtered')
+			$('.filtered').addClass('visible')
 		}
+		return;
 	}
 	if (type == "pager") {
 		if (value == "next") {
@@ -691,6 +709,7 @@ const blogControl =  function(type,value,store) {
 		} else {
 			$('.visible:first').prev('.filtered').addClass('marker')
 			let $newFirstPost = $('.marker')
+			console.log("mmmmm")
 			$('.visible').removeClass('visible')
 			for (var iq = 0; iq < 6; iq++) {
 				if (iq == 0) {
@@ -711,6 +730,7 @@ const blogControl =  function(type,value,store) {
 		let filteredPosts = $('.filtered')
 		$('.news_blog_pager').find('#prev_pager').remove()
 		$('.visible').removeClass('visible')
+		console.log(";;;;;;;;")
 		for (var ihz = 0; ihz < 6; ihz++) {
 			$('.filtered:eq('+ihz+')').addClass('visible')
 		}
@@ -1128,7 +1148,7 @@ export default {
 				blogfilter.on('change', e=>{
 					blogControl("filter",$(e.target).val(),store)
 				})
-				blogfilter.removeClass('blogfilter')
+				// blogfilter.removeClass('blogfilter')
 			}
 			//blog page paging
 			let blogpager = $('.bind_news_blog_pager')
@@ -1191,7 +1211,6 @@ export default {
 
 				$('.cls-10, .cls-9').mouseenter(function(e){
 					// console.log('test');
-					// debugger;
 					if($(this).attr('data-head')) {
 						var newtop = Number($(this).offset().top) + 200;
 						var newleft = Number($(this).offset().left);

@@ -691,16 +691,16 @@ h4 {
 		background-image: url(/burger-dark.svg);
 	}
 	&.sub_coalition_who {
-		background-image: url(/burger-dark.svg);	
+		background-image: url(/burger-dark.svg);
 	}
 	&.sub_impact_map {
-		background-image: url(/burger-dark.svg);	
+		background-image: url(/burger-dark.svg);
 	}
 	&.sub_impact_stories {
-		background-image: url(/burger-dark.svg);		
+		background-image: url(/burger-dark.svg);
 	}
 	&.sub_news_blog {
-		background-image: url(/burger-dark.svg);		
+		background-image: url(/burger-dark.svg);
 	}
 }
 #burger[data-postopen=true] {
@@ -1224,7 +1224,7 @@ h4 {
 				strong {
 					color: $color_fern_green_approx!important;
 				}
-				.carousel_item_image {	
+				.carousel_item_image {
 					&#logo1 {
 						background-image: url(/coalition_logo_1_green.png);
 					}
@@ -1320,7 +1320,7 @@ h4 {
 }
 
 #impact_map {
-	
+
 	svg {
 		fill: #000000;
 	}
@@ -1343,7 +1343,7 @@ h4 {
 			stroke-width: 1px;
 		}
 	}
-	
+
 	.blurb {
 		position: absolute;
 		top: 0;
@@ -1758,6 +1758,12 @@ h4 {
 }
 #activities_proj3 {
 	background-image: url(/act_proj3.jpg);
+}
+#activities_proj4 {
+	background-image: url(/act_proj4.jpg);
+}
+#activities_proj5 {
+	background-image: url(/act_proj5.jpg);
 }
 #activities_proj6 {
 	background-image: url(/act_proj6.jpg);
@@ -2495,6 +2501,7 @@ h4 {
 		align-items: center;
 		justify-content: center;
 		padding: 40px 0 20px;
+		width: 100%;
 		input {
 			background: none;
 			padding: 10px;
@@ -3370,7 +3377,7 @@ nav[data-postopen=true] {
 		}
 		&:last-child {
 			margin-bottom: 2px !important;
-			margin-top: 0 !important;	
+			margin-top: 0 !important;
 		}
 	}
 }
@@ -3891,6 +3898,155 @@ nav[data-postopen=true] {
 }
 #actproj3_collage7 {
 	background-image: url(/act_proj3_collage7.jpg);
+	background-size: cover;
+	height: 140px;
+	width: 240px;
+	position: absolute;
+	top: -7%;
+	left: 43%;
+	transform: rotate(9deg);
+}
+#actproj4_collage1 {
+	background-image: url(/act_proj4_collage1.jpg);
+	background-size: cover;
+	background-position: 50%;
+	height: 150px;
+	width: 120px;
+	position: absolute;
+	left: 35%;
+	top: -4%;
+	transform: rotate(-10deg);
+}
+#actproj4_collage2 {
+	background-image: url(/act_proj4_collage2.jpg);
+	background-position: 50%;
+	background-size: cover;
+	height: 200px;
+	width: 200px;
+	position: absolute;
+	left: -4%;
+	top: 35%;
+	transform: rotate(-24deg);
+}
+#actproj4_collage3 {
+	background-image: url(/act_proj4_collage3.jpg);
+	background-size: cover;
+	height: 150px;
+	width: 200px;
+	position: absolute;
+	left: -2%;
+	top: 15%;
+	transform: rotate(11deg);
+}
+#actproj4_collage4 {
+	background-image: url(/act_proj4_collage4.jpg);
+	background-size: cover;
+	height: 150px;
+	width: 200px;
+	position: absolute;
+	left: 8%;
+	top: 1%;
+	transform: rotate(-10deg);
+	filter: grayscale(1);
+}
+#actproj4_collage5 {
+	background-image: url(/act_proj4_collage5.jpg);
+	background-size: cover;
+	height: 120px;
+	width: 220px;
+	position: absolute;
+	top: -2%;
+	left: 17%;
+	transform: rotate(14deg);
+}
+#actproj4_collage6 {
+	background-image: url(/act_proj4_collage6.jpg);
+	background-size: cover;
+	background-position: 50%;
+	height: 250px;
+	width: 160px;
+	position: absolute;
+	bottom: 5%;
+	left: -1%;
+	transform: rotate(-10deg);
+}
+#actproj4_collage7 {
+	background-image: url(/act_proj4_collage7.jpg);
+	background-size: cover;
+	height: 140px;
+	width: 240px;
+	position: absolute;
+	top: -7%;
+	left: 43%;
+	transform: rotate(9deg);
+}
+
+#actproj5_collage1 {
+	background-image: url(/act_proj5_collage1.jpg);
+	background-size: cover;
+	background-position: 50%;
+	height: 150px;
+	width: 120px;
+	position: absolute;
+	left: 35%;
+	top: -4%;
+	transform: rotate(-10deg);
+}
+#actproj5_collage2 {
+	background-image: url(/act_proj5_collage2.jpg);
+	background-position: 50%;
+	background-size: cover;
+	height: 200px;
+	width: 200px;
+	position: absolute;
+	left: -4%;
+	top: 35%;
+	transform: rotate(-24deg);
+}
+#actproj5_collage3 {
+	background-image: url(/act_proj5_collage3.jpg);
+	background-size: cover;
+	height: 150px;
+	width: 200px;
+	position: absolute;
+	left: -2%;
+	top: 15%;
+	transform: rotate(11deg);
+}
+#actproj5_collage4 {
+	background-image: url(/act_proj5_collage4.jpg);
+	background-size: cover;
+	height: 150px;
+	width: 200px;
+	position: absolute;
+	left: 8%;
+	top: 1%;
+	transform: rotate(-10deg);
+	filter: grayscale(1);
+}
+#actproj5_collage5 {
+	background-image: url(/act_proj5_collage5.jpg);
+	background-size: cover;
+	height: 120px;
+	width: 220px;
+	position: absolute;
+	top: -2%;
+	left: 17%;
+	transform: rotate(14deg);
+}
+#actproj5_collage6 {
+	background-image: url(/act_proj5_collage6.jpg);
+	background-size: cover;
+	background-position: 50%;
+	height: 250px;
+	width: 160px;
+	position: absolute;
+	bottom: 5%;
+	left: -1%;
+	transform: rotate(-10deg);
+}
+#actproj5_collage7 {
+	background-image: url(/act_proj5_collage7.jpg);
 	background-size: cover;
 	height: 140px;
 	width: 240px;
@@ -4837,7 +4993,7 @@ nav[data-currentsub=news_blog][data-postopen=true] {
 
 
 @media screen and(max-width:770px) {
-	
+
 	#viewer[data-currentsub=mission_how] {
 		#mission {
 			overflow-y: scroll!important;
@@ -5860,7 +6016,7 @@ nav[data-currentsub=news_blog][data-postopen=true] {
 	}
 }
 
-@media screen and (min-width: 771px) and (max-width: 991px){ 
+@media screen and (min-width: 771px) and (max-width: 991px){
 	#impact {
 		flex-wrap: wrap;
 		.wrap {
@@ -5903,7 +6059,7 @@ nav[data-currentsub=news_blog][data-postopen=true] {
 	}
 }
 
-@media screen and (min-width: 1024px) and (max-height: 1366px) and (-webkit-min-device-pixel-ratio: 2)  and (orientation: portrait)  
+@media screen and (min-width: 1024px) and (max-height: 1366px) and (-webkit-min-device-pixel-ratio: 2)  and (orientation: portrait)
 {
 	#impact {
 		flex-wrap: wrap;
@@ -5991,13 +6147,13 @@ nav[data-currentsub=news_blog][data-postopen=true] {
 		}
 		.tab[data-slide="impact"] .subdots li:only-child:before {
 			bottom: calc(50% + 10px)!important;
-		} 
+		}
 		.tab[data-slide="impact"].Impactfr .subdots li:only-child:before {
 			bottom: calc(50% + 13px)!important;
-		} 
+		}
 		.tab[data-slide="impact"].Impactfr .subdots li:only-child:after {
 			top: calc(50% + -5px)!important;
-		} 
+		}
 		.tab[data-slide="impact"] .subdots li:only-child:after {
 			top: calc(50% + -2px)!important;
 		}

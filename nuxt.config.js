@@ -4,8 +4,8 @@ module.exports = {
   mode: 'universal',
   env: {
     // baseUrl: 'https://www.haititakesroot.org',
-    baseUrl: 'https://staging2.haititakesroot.org/',
-    // baseUrl: 'http://localhost:3000',
+    // baseUrl: 'https://staging2.haititakesroot.org/',
+    baseUrl: 'http://localhost:3000',
   },
   router: {
     base: '/'
