@@ -29,6 +29,8 @@
     "xmlhttprequest": "^1.8.0"
   },
   "devDependencies": {
-    "cross-env": "^5.0.1"
+    "cross-env": "^5.0.1",
+    "eslint": "^6.2.1",
+    "eslint-plugin-vue": "^5.2.3"
   }
 }

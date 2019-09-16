@@ -14,8 +14,10 @@
 			<div :class="'slide '+slide.id" v-for="slide in $store.state.slides" :id="slide.id" v-bind:key="slide.id" :data-slide="slide.img" v-html="slide.mark" :data-dex="$store.state.pages[slide.id].dex">
 			</div>
 		</div>
-		<div id=back @click=novert($event,false) :data-postopen="$store.state.modal" :data-current=$store.state.id><img src=back.svg />{{settings.backText}}</div>
-		<div id=next @click=novert($event,true) :data-postopen="$store.state.modal" :data-current=$store.state.id><img src=next.svg />{{settings.nextText}}</div>
+		<div id="button_container">
+			<div id=back @click=novert($event,false) :data-postopen="$store.state.modal" :data-current=$store.state.id><img src=back.svg />{{settings.backText}}</div>
+			<div id=next @click=novert($event,true) :data-postopen="$store.state.modal" :data-current=$store.state.id><img src=next.svg />{{settings.nextText}}</div>
+		</div>
 		<div id=ex :data-postopen="$store.state.modal">
 			<div id=flags>
 				<a href="/"><img src=flag_us.jpg /></a>
@@ -80,8 +82,8 @@ const axios = require('axios')
 const moment = require('moment')
 let nomode = false
 //change this to set staging vs production
-// let baseURL = 'https://staging2.haititakesroot.org'
 let baseURL = 'http://localhost:3000'
+// let baseURL = 'https://staging2.haititakesroot.org'
 
 //this gets set by the config files under pages/
 let basePush = '/'
@@ -168,7 +170,7 @@ function debounce(func, wait, immediate) {
 		};
 		var callNow = immediate && !timeout;
 		clearTimeout(timeout);
-		// timeout = setTimeout(later, wait);
+		timeout = setTimeout(later, wait);
 		if (callNow) {
 			func.apply(context, args) 
 		}
@@ -184,7 +186,7 @@ const throttle = (func, limit) => {
     if (!inThrottle) {
       func.apply(context, args)
       inThrottle = true
-    //   setTimeout(() => inThrottle = false, limit)
+      setTimeout(() => inThrottle = false, limit)
     }
   }
 }
@@ -632,7 +634,7 @@ async function prepareNews(vuestance) {
 		let facebook_share = 'https://www.facebook.com/sharer/sharer.php?u='+ encodeURIComponent(sitePath+'/news?sub=news_blog&postid='+blogpost.id)
 		let twitter_share = 'https://twitter.com/home?status=Check%20out%20this%20blog%20post%20on%20'+encodeURIComponent(sitePath+'/news?sub=news_blog&postid='+blogpost.id)
 		let order = (ih >= 1 ? ih +1 : ih)
-		let postContent = '<li id=blogpost-'+blogpost.id+' class="'+postclass+'" data-category="'+categories+'" style="order:'+order+'"><div class=blogpost_overlay></div><div class=blogpost_image></div><a class="close_modal close_modal_link">« Return to Blog</a><hr><h4>'+moment(blogpost.date).format('MMMM Do, YYYY')+'</h4><h3>'+blogpost.title.rendered+'</h3><div class=blogpost_excerpt>'+blogpost.excerpt.rendered+'</div><div class=blogpost_content>'+blogpost.content.rendered+'</div><hr><a data-postid='+blogpost.id+' class="read_more_modal blogpost_read_more_link">Read More »</a><div class=blogpost_links><a class="close_modal close_modal_link">« Return to Blog</a><ul class="blogpost_social_share"><li>Share</li><li><a id=facebook_share href='+facebook_share+' ></a></li><li><a id=twitter_share href='+twitter_share+' ></a></li></ul></div><h3 class="curs">more related posts</h3><ul class="blogpost_related_posts">'+related_posts_content+'</ul></li>';
+		let postContent = '<li id=blogpost-'+blogpost.id+' class="'+postclass+'" data-category="'+categories+'" style="order:'+order+'"><div class=blogpost_overlay></div><div class=blogpost_image></div><a class="close_modal close_modal_link">« Return to Blog</a><hr><h4>'+moment(blogpost.date).format('MMMM Do, YYYY')+'</h4><h3>'+blogpost.title.rendered+'</h3><div class=blogpost_excerpt>'+blogpost.excerpt.rendered+'</div><div class=blogpost_content>'+blogpost.content.rendered+'</div><hr> <div class="blogpost_links"> <a data-postid='+blogpost.id+' class="read_more_modal blogpost_read_more_link">Read More »</a> </div><div class=blogpost_links><a class="close_modal close_modal_link">« Return to Blog</a><ul class="blogpost_social_share"><li>Share</li><li><a id=facebook_share href='+facebook_share+' ></a></li><li><a id=twitter_share href='+twitter_share+' ></a></li></ul></div><h3 class="curs">more related posts</h3><ul class="blogpost_related_posts">'+related_posts_content+'</ul></li>';
 		$postsGrid.append(postContent)
 	}
 	if (store.state.blogposts.length > 6) {
@@ -1444,6 +1446,7 @@ export default {
 			if (open) {
 				curMarg = Number(open.style.marginTop.replace(/\D/g,'')) * -1
 			}
+			console.log(">>>>>>>>>>>>" ,curMarg );
 			if (curMarg !== false && showNext && curMarg <= ((open.children.length - 1) * -100)) {
 			// if(window.outerWidth < 770 || (showNext && curMarg <= ((open.children.length - 1) * -100))) {
 				console.log("novert on mobile or to go to next slide")
@@ -1469,7 +1472,7 @@ export default {
 				store.commit('hiDex')
 				let nextSub = $('#'+store.state.currentSub+'+.sub').attr('id')
 				let parentSlide = $('.open').parents('.slide').attr('id')
-				console.log(nextSub,"nextSub novert")
+				console.log(nextSub,"nextSub novert : " ,  curMarg)
 				store.commit('choke',false)
 				if (nextSub) {
 					//reset open projects

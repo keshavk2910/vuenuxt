@@ -12,7 +12,7 @@ export default {
 	data: function() {
 		return {
 			settings: {
-				//  baseURL: 'https://staging2.haititakesroot.org/',
+				// baseURL: 'https://staging2.haititakesroot.org/',
 				baseURL: 'http://localhost:3000',
 				basePush: '/', 
 				backText:'back',
